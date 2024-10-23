@@ -1,0 +1,19 @@
+# pretraing dataset
+
+_target_: slm.data.protein_datamodule.ProteinDataModule
+
+dataset:
+  _target_: slm.data.protein_datamodule.ESMEmbeddingDataset
+  path_to_embeddings: ${paths.data_dir}
+  cluster_rep_csv: null
+  transform: null
+  training: true
+  max_len: 512
+
+
+batch_size: 2   # Needs to be divisible by the number of devices (e.g., if in a distributed setup)
+generator_seed: 42
+train_val_split: [0.95, 0.05]
+num_workers: 4
+pin_memory: false
+shuffle: true

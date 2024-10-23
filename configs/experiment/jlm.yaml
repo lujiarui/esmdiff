@@ -1,0 +1,55 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=example
+
+defaults:
+  - override /callbacks: default
+  - override /data: pdb
+  - override /model: default
+  - override /trainer: ddp
+  
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+callbacks:
+  model_checkpoint:
+    save_top_k: 1
+    every_n_epochs: 5
+    save_last: false
+  early_stopping:
+    patience: 100
+
+
+data:
+  batch_size: 16 # for 32GB GPU x 4
+
+model:
+  _target_: slm.models.model.JointLanguageModeling
+  optimizer:
+    lr: 1e-5 
+  net:
+    _target_: slm.models.net.CustomedGPT2
+    config:
+      _target_: transformers.GPT2Config
+      n_layer: 48
+      n_embd: 1280
+      n_head: 16
+      n_positions: 2048
+      freeze_dec_emb: true
+      sep_strategy: position
+
+
+trainer:
+  min_epochs: 100
+  max_epochs: 100
+  # gradient_clip_val: 0.5
+
+
+tags: ["pdb,transformer,dev"]
+
+task_name: "JointLanguageModeling"
+
+seed: 42
+
+ckpt_path: null

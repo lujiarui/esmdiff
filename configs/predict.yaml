@@ -1,0 +1,32 @@
+# @package _global_
+
+defaults:
+  - _self_
+  # - data: pdb # choose datamodule with `test_dataloader()` for evaluation
+  - model: default
+  # - logger: null
+  - trainer: gpu
+  - paths: default
+  - extras: default
+  - hydra: default
+  # - experiment: null
+
+task_name: "predict_dev"
+
+tags: ["dev"]
+
+precision: 32
+
+############################
+# modify the following lines
+############################
+
+# passing checkpoint path is necessary for evaluation
+ckpt_path: null
+# input directory with .pdb files as predicting targets
+inference:
+  input: null
+  target: null
+  batch_size: 32
+  n_samples: 100
+  output: "outputs/inference"

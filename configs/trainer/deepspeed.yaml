@@ -1,0 +1,10 @@
+defaults:
+  - default
+
+strategy: deepspeed_stage_2
+
+accelerator: gpu
+devices: -1
+num_nodes: 1
+
+precision: 32

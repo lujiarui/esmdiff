@@ -1,0 +1,41 @@
+_target_: slm.models.model.ConditionalLanguageModeling
+
+# compile model for faster training with pytorch 2.0
+compile: false
+
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 1e-5
+
+# scheduler: null
+  # _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+  # _partial_: true
+  # mode: min
+  # factor: 0.5
+  # patience: 10  # per 1k step
+
+scheduler: 
+  _target_: transformers.get_constant_schedule_with_warmup
+  _partial_: true
+  num_warmup_steps: 1000
+
+net: # ~100M
+  _target_: slm.models.net.CustomedT5
+  # _target_: transformers.T5ForConditionalGeneration
+  config:
+    _target_: transformers.T5Config
+    is_decoder: false
+    initialize_emb_from_vq: false
+    freeze_dec_emb: false
+    dec_add_input_emb: false
+    num_layers: 12
+    vocab_size: 4101
+    d_model: 1024
+    d_ff: 1024
+    dropout_rate: 0.1
+    num_heads: 16
+    feed_forward_proj: gated-gelu
+    pad_token_id: 4099
+    eos_token_id: 4099
+    decoder_start_token_id: 4099
