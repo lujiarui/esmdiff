@@ -130,7 +130,12 @@ class BatchTensorConverter:
         collated_batch = dict()
         
         for k in target_keys:
-            pad_v = C.STRUCTURE_PAD_TOKEN if k == 'structure_tokens' else 0
+            if k == 'structure_tokens':
+                pad_v = C.STRUCTURE_PAD_TOKEN
+            elif k == "sequence_tokens":
+                pad_v = C.SEQUENCE_PAD_TOKEN
+            else:
+                pad_v = 0
             collated_batch[k] = self.collate_dense_tensors([d[k] for d in raw_batch], pad_v=pad_v)
         
         for k in non_tensor_keys:    # return non-array keys as is
