@@ -198,7 +198,6 @@ class CustomedGPT2(GPT2Model):
 
             outputs = super().forward(past_key_values=past_key_values, **gpt_input_dict)    
             h = outputs.last_hidden_state
-            # print("h", h.shape)
             str_logits = self.structure_head(h[:, -1:])  # [B, V_struc]
             return_dict = {
                 "structure_logits": str_logits, # different V
@@ -207,7 +206,6 @@ class CustomedGPT2(GPT2Model):
         else:
             outputs = super().forward(**gpt_input_dict)    
             h = outputs.last_hidden_state
-            # print("h", h.shape)
             
             # split sequence and structure logits
             seq_logits = self.sequence_head(h[:, :L])   # [B, L, V_seq]
@@ -230,7 +228,6 @@ class CustomedGPT2(GPT2Model):
                 loss_mask = kwargs['mask']
 
             for name, logits, labels in [("sequence", seq_logits, _labels[:, :L]), ("structure", str_logits, _labels[:, L:])]:
-                # print("shapes", logits.shape, labels.shape)
 
                 # Shift so that tokens < n predict n
                 shift_logits = logits[..., :-1, :].contiguous()
