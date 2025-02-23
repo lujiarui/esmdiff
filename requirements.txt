@@ -27,7 +27,7 @@ pytest          # tests
 dm-tree
 h5py
 esm==3.0.4
-biotite==0.41.1
+biotite==0.41.2
 biopython==1.84 #79
 deepspeed==0.15.1
 seaborn

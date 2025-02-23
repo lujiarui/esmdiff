@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 import argparse
 from functools import partial
-from time import time
+from time import time, strftime
 import tempfile
 
 import numpy as np
@@ -77,7 +77,8 @@ def minibatch_gibbs_by_esm(
     mask_ids=None,
 ):
 
-    output_dir = output_dir / f"T{temperature}_step{num_steps}_topp{top_p}_N{num_samples}"
+    str_time = strftime("%Y%m%d-%H%M%S")
+    output_dir = output_dir / f"T{temperature}_step{num_steps}_topp{top_p}_N{num_samples}_{str_time}"
     save_to = output_dir / f"{sample_basename}.pdb"
     print(f"Results will save to {save_to}")
     if save_to.exists():
@@ -150,8 +151,8 @@ def ddpm_sample_by_esm(
     sample_max_t: float = 1.0,
 ):
     model = pl_model
-
-    output_dir = output_dir / f"step{num_steps}_eps{eps}_N{num_samples}"
+    str_time = strftime("%Y%m%d-%H%M%S")
+    output_dir = output_dir / f"step{num_steps}_eps{eps}_N{num_samples}_{str_time}"
     save_to = output_dir / f"{sample_basename}.pdb"
     print(f"Results will save to {save_to}")
     if save_to.exists():

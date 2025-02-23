@@ -28,5 +28,4 @@ To evaluate the generated samples, provide input as follows:
 python analysis/apo_analysis.py logs/toy_sampling/apo/samples_seed42 --reference data/ground_truth/apo --task apo
 python analysis/bpti_analysis.py logs/toy_sampling/bpti/samples_seed42 --reference data/ground_truth/bpti/
 python analysis/ped_analysis.py logs/toy_sampling/bpti/samples_seed42 --reference data/ground_truth/ped/
-
 ```

@@ -59,9 +59,8 @@ def load_state_dict_from_lightning_ckpt(ckpt_path, device="cuda"):
     model = hydra.utils.instantiate(cfg.model)
     print(f"Sucessfully instantiated model ...")
 
-    if ckpt_path.suffix == ".pt" and "mp_rank_" in ckpt_path.stem:
+    if ckpt_path.suffix == ".pt":
         all_params = torch.load(ckpt_path, map_location=torch.device(device))['module']
-        # net_params = {k.replace('net.', ''): v for k, v in net_params.items()}
         model.load_state_dict(all_params)
     else:
         raise ValueError(f"Unsupported ckpt format: {ckpt_path}")

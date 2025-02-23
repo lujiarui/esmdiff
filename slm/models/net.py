@@ -253,11 +253,6 @@ class CustomedGPT2(GPT2Model):
 
 
 
-        
-    
-    
-
-
 class CustomedT5(T5ForConditionalGeneration):
     """https://github.com/huggingface/transformers/blob/v4.15.0/src/transformers/models/t5/modeling_t5.py#L1432"""    
     def __init__(self, config: T5Config):
