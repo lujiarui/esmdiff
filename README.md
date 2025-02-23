@@ -27,12 +27,12 @@ Among various language modeling approaches, we introduce **ESMDiff** ([ESM3](htt
 Our open-source codebase provides a effective fine-tuning pipeline to adapt these foundational protein language models to task-specific applications (such as conformation generation).
 
 <p align="center">
-<img src="assets/denoiser.png" width="450"/>
+<img src="assets/denoiser.png" width="500"/>
 </p>
 
 
 
-## Installation
+## 🚀 Installation
 ```bash
 conda create -n py310 python=3.10 -y
 conda activate py310
