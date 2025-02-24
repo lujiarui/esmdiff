@@ -95,7 +95,7 @@ python scripts/dump.py pdb_data/raw_pdb pdb_data/raw_pdb_encoding pdb
 ## 🧑‍💻 Training
 ```bash
 # test case: training pipeline (only 5 training examples)
-bash train.sh experiment=mdlm paths.data_dir=data/dummy_train_data data.batch_size=1 logger=csv trainer.devices=1 data.train_val_split=[0.8,0.2]
+python slm/train.py experiment=mdlm paths.data_dir=data/dummy_train_data data.batch_size=1 logger=csv trainer.devices=1 data.train_val_split=[0.8,0.2]
 
 # standard jobs
 sbatch train.sh experiment=jlm paths.data_dir=pdb_data/raw_pdb_encoding data.batch_size=16 logger=csv 
