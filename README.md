@@ -109,7 +109,7 @@ See `./analysis`.
 
 
 ## 📄 LICENSE
-The source code and model can be used for non-commerical purpose. For any components related to ESM3, please strictly follow the volutionaryScale Cambrian Non-Commercial License Agreement <https://www.evolutionaryscale.ai/policies/cambrian-non-commercial-license-agreement>. 
+The source code and model of ESMDiff can be freely used for non-commerical purpose. For any components related to ESM3, please refer to the license of Biohub/ESM <https://github.com/Biohub/esm/blob/main/LICENSE.md>. 
 
 
 
